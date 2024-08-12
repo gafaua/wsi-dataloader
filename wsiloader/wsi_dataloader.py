@@ -20,20 +20,21 @@ class WSIDataloader(Sampler):
                  **data_loader_kwargs,
                  ):
         """
-        Wrapper class for PyTorch's DataLoader to decouple data loading and transforms application when applied
+        Wrapper class for PyTorch's Dataloader and Dataset classes to decouple data loading and transforms execution when applied
         to patches extracted from Whole-Slide Images. This enables both parallelization of data loading using multiple
-        DataLoader workers and cuda acceleration for transforms application.
+        Dataloader workers and cuda acceleration for transforms application.
         The `transforms` parameter is applied sequentially to all patches in each batch.
+        See examples of how to use at: 
 
         Args:
             wsi_paths (List[str | Path]): A list of paths to all WSIs to include in the dataset.
             patch_generator (Callable[[str | Path], Iterator[Image.Image  |  Tensor  |  np.ndarray]]): Generator function taking
                                            the path to a WSI as input and returning an iterator over patches extracted from the WSI.
-            transforms (_type_, optional): Transforms to apply to each element of a batch. Defaults to None.
+            transforms (optional): Transforms to apply to each element of a batch. Defaults to None.
             transforms_device (str, optional): Device used for executing tranforms to the batch. When set to "cpu", the transforms
                                                are executed by the DataLoader's workers. When set to "cuda", the transforms are executed
                                                after the patches have been collected by the DataLoader's workers. Defaults to "cpu".
-            collate_fn (_type_, optional): Collate function used to collate the elements of the batch after the tranforms are
+            collate_fn (optional): Collate function used to collate the elements of the batch after the tranforms are
                                            applied. When set to `None`, defaults to torch's `default_collate` function. Defaults to None.
         """
         self.transforms_device = transforms_device
