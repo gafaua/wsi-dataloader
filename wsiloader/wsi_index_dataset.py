@@ -53,7 +53,7 @@ class WSIIndexDataset(Dataset):
             self.idx_to_wsi_id += [wsi_id] * len(patches)
             wsi_id += 1
 
-            pbar.set_postfix_str(f"indexed patches: {self.total_cnt:,}", refresh=True)
+            pbar.set_postfix_str(f"[{len(patches)} > {self.total_cnt:,} indexed patches]", refresh=True)
 
     def __get_patch_at_idx(self, idx):
         wsi_id = self.idx_to_wsi_id[idx]
