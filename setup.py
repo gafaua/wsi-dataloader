@@ -5,7 +5,7 @@ setup(
     version="0.0.1",
     author="Gaspar Faure",
     description="A PyTorch efficient dataloader for working with Whole-Slide Images",
-    py_modules=[find_packages(include=["wsiloader"])],
+    py_modules=find_packages(),
     url="https://github.com/gafaua/wsi-dataloader",
     install_requires=[
         "torch",
