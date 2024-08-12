@@ -1,2 +1,2 @@
-from .wsi_dataloader import WSIDataloader
-from .wsi_index_dataset import WSIIndexDataset
+from wsiloader.wsi_dataloader import WSIDataloader
+from wsiloader.wsi_index_dataset import WSIIndexDataset
