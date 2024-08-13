@@ -4,7 +4,7 @@ The WSI Dataloader library offers a simple implementation that enables online ac
 
 The `WSIDataloader` class offers an alternative solution to generating patch datasets. It is a [PyTorch](https://pytorch.org/) based implementation encapsulating a `Dataloader` and a `Dataset`. It enables online patch extraction across a given list of WSI files, directly during training. It supports all usual Dataloader parameters to parallelize and speed up data loading (`num_workers`, `prefetch_ratio`). 
 
-**CUDA acceleration for data augmentation**
+#### CUDA acceleration for data augmentation
 The `WSIDataloader` class supports CUDA acceleration for transforms application (data augmentation). When the `transforms_device` parameter is set to "cpu", the default Dataloader behaviour is used and the transforms are applied in the Dataloader workers. When it is set to "cuda", the patches are first loaded using the Dataloader workers, and then transforms are sequentially applied on GPU. This decoupling is necessary due to CUDA's inability to be used in multiprocessing contexts. Depending on the nature of the required transforms, using CUDA for data augmentation can substantially reduce a training loop's iteration time. See more in the provided examples.
 
 ### Installation
