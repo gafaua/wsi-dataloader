@@ -6,11 +6,12 @@ setup(
     author="Gaspar Faure",
     license="MIT",
     description="A PyTorch efficient dataloader for working with Whole-Slide Images",
-    packages=find_packages(),
+    packages=find_packages(exclude=["examples"]),
     url="https://github.com/gafaua/wsi-dataloader",
     install_requires=[
         "torch",
         "torchvision",
         "pillow",
+        "numpy",
     ],
 )
