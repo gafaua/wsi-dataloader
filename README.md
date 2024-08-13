@@ -1,2 +1,20 @@
-# wsi-dataloader
-PyTorch dataloader for efficient WSI Dataset creation
+## WSI Dataloader
+
+The WSI Dataloader library offers a simple implementation for enabling online access to whole-slide images (WSI) during the training of deep learning models. In most machine learning frameworks designed for WSI analysis the very large WSI files are split into patches, usually for memory limitation reasons. Generating patch datasets can be long, resource consuming and sometimes impossible when working with limited storage constraints.
+
+The `WSIDataloader` class offers an alternative solution to generating patch datasets. It is a [PyTorch](https://pytorch.org/) based implementation encapsulating both a `Dataloader` and a `Dataset`. It enables online patch extraction across a given list of WSI files, directly during training. It supports all usual Dataloader parameters to parallelize and speed up data loading (`num_workers`, `prefetch_ratio`). 
+
+**CUDA acceleration for data augmentation**
+The `WSIDataloader` class supports CUDA acceleration for transforms application (data augmentation). When the `transforms_device` parameter is set to "cpu", the default Dataloader behaviour is used and the transforms are applied in the Dataloader workers. When it is set to "cuda", the patches are first loaded using the Dataloader workers, and then transforms are sequentially applied on GPU. This decoupling is necessary due to CUDA's inability to be used in multiprocessing contexts. Depending on the nature of the required transforms, using CUDA for data augmentation can substantially reduce a training loop's iteration time. See more in the provided examples.
+
+### Installation
+
+You can install the `wsiloader` library using pip:
+
+```sh
+$ pip install git+https://github.com/gafaua/wsi-dataloader/tree/main
+$ python -c "from wsiloader import WSIDataloader"
+```
+
+### Examples
+Example notebooks can be found in the [examples](./examples/) directory.

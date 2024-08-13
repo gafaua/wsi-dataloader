@@ -22,8 +22,9 @@ class WSIDataloader(Sampler):
         """
         Wrapper class for PyTorch's Dataloader and Dataset classes to decouple data loading and transforms execution when applied
         to patches extracted from Whole-Slide Images. This enables both parallelization of data loading using multiple
-        Dataloader workers and cuda acceleration for transforms application.
-        The `transforms` parameter is applied sequentially to all patches in each batch.
+        Dataloader workers and cuda acceleration for transforms application. When the `transforms_device` parameter is set to "cuda",
+        the transforms are sequentially applied on GPU, when set to "cpu", the default Dataloader behaviour is used and the
+        transforms are applied in the Dataloader workers.
         See examples of how to use at: 
 
         Args:
