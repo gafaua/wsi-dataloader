@@ -8,7 +8,7 @@ with Path("README.md").open() as readme_file:
 
 setup(
     name="wsiloader",
-    version="0.0.1",
+    version="0.0.2",
     author="Gaspar Faure",
     license="MIT",
     description="An efficient PyTorch dataloader for working with Whole-Slide Images",
