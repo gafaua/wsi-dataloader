@@ -4,8 +4,15 @@ The WSI Dataloader library offers a simple implementation that enables online ac
 
 The `WSIDataloader` class offers an alternative solution to generating patch datasets. It is a [PyTorch](https://pytorch.org/) based implementation encapsulating a `Dataloader` and a `Dataset`. It enables online patch extraction across a given list of WSI files, directly during training. It supports all usual Dataloader parameters to parallelize and speed up data loading (`num_workers`, `prefetch_ratio`). 
 
+## Supported features
+- Random patch sampling over a list of WSIs 
+- Support for data loading over multiple workers
+- CUDA acceleration for data augmentation (more on this below)
+- User-defined patch definition for flexibility (the user how patches should be extracted from WSIs)
+- Support for standard PyTorch Dataloader arguments
+
 #### CUDA acceleration for data augmentation
-The `WSIDataloader` class supports CUDA acceleration for transforms application (data augmentation). When the `transforms_device` parameter is set to "cpu", the default Dataloader behaviour is used and the transforms are applied in the Dataloader workers. When it is set to "cuda", the patches are first loaded using the Dataloader workers, and then transforms are sequentially applied on GPU. This decoupling is necessary due to CUDA's inability to be used in multiprocessing contexts. Depending on the nature of the required transforms, using CUDA for data augmentation can substantially reduce a training loop's iteration time. See more in the provided examples.
+The `WSIDataloader` class supports CUDA acceleration for transforms application (data augmentation). When the `transforms_device` parameter is set to "cpu", the default Dataloader behaviour is used and the transforms are applied in the Dataloader workers. When it is set to "cuda", the patches are first loaded using the Dataloader workers, and then transforms are sequentially applied on GPU. This decoupling is necessary due to CUDA's inability to be used in multiprocessing contexts. Depending on the nature of the required transforms, using CUDA for data augmentation can substantially reduce a training loop's iteration time. The `basic_example.ipynb` notebook provides an example.
 
 ### Installation
 
