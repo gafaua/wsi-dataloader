@@ -32,3 +32,16 @@ $ python -c "from wsiloader import WSIDataloader"
 
 ### Examples
 Example notebooks can be found in the [examples](./examples/) directory. We recommend to take a look at these to get a better idea of how to take advantage of the `wsiloader` library for your pipeline.
+
+## Citing WSI Dataloader
+
+If you find this repository useful, please consider giving a star :star: and citation!
+
+```
+@misc{wsidataloader,
+  author = {Gaspar Faure},
+  title = {WSI Dataloader},
+  url = {https://github.com/gafaua/wsi-dataloader},
+  version = {0.0.2},
+}
+```
